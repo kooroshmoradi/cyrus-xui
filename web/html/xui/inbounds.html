@@ -121,12 +121,12 @@
 <script>
 
     const columns = [{
-        title: "操作",
+        title: "operate",
         align: 'center',
         width: 30,
         scopedSlots: { customRender: 'action' },
     }, {
-        title: "启用",
+        title: "Enable",
         align: 'center',
         width: 40,
         scopedSlots: { customRender: 'enable' },
@@ -136,37 +136,37 @@
         dataIndex: "id",
         width: 30,
     }, {
-        title: "备注",
+        title: "Remark",
         align: 'center',
         width: 100,
         dataIndex: "remark",
     }, {
-        title: "协议",
+        title: "protocol",
         align: 'center',
         width: 60,
         scopedSlots: { customRender: 'protocol' },
     }, {
-        title: "端口",
+        title: "port",
         align: 'center',
         dataIndex: "port",
         width: 60,
     }, {
-        title: "流量↑|↓",
+        title: "traffic↑|↓",
         align: 'center',
         width: 150,
         scopedSlots: { customRender: 'traffic' },
     }, {
-        title: "详细信息",
+        title: "settings",
         align: 'center',
         width: 40,
         scopedSlots: { customRender: 'settings' },
     }, {
-        title: "传输配置",
+        title: "stream",
         align: 'center',
         width: 60,
         scopedSlots: { customRender: 'stream' },
     }, {
-        title: "到期时间",
+        title: "expiryTime",
         align: 'center',
         width: 80,
         scopedSlots: { customRender: 'expiryTime' },
@@ -234,8 +234,8 @@
             },
             openAddInbound() {
                 inModal.show({
-                    title: '添加入站',
-                    okText: '添加',
+                    title: 'Add inbound',
+                    okText: 'Add to',
                     confirm: async (inbound, dbInbound) => {
                         inModal.loading();
                         await this.addInbound(inbound, dbInbound);
@@ -246,8 +246,8 @@
             openEditInbound(dbInbound) {
                 const inbound = dbInbound.toInbound();
                 inModal.show({
-                    title: '修改入站',
-                    okText: '修改',
+                    title: 'Modify inbound',
+                    okText: 'Revise',
                     inbound: inbound,
                     dbInbound: dbInbound,
                     confirm: async (inbound, dbInbound) => {
@@ -295,10 +295,10 @@
             },
             resetTraffic(dbInbound) {
                 this.$confirm({
-                    title: '重置流量',
-                    content: '确定要重置流量吗?',
-                    okText: '重置',
-                    cancelText: '取消',
+                    title: 'Reset traffic',
+                    content: 'Are you sure you want to reset the traffic?',
+                    okText: 'Sure',
+                    cancelText: 'Cancel',
                     onOk: () => {
                         const inbound = dbInbound.toInbound();
                         dbInbound.up = 0;
@@ -309,16 +309,16 @@
             },
             delInbound(dbInbound) {
                 this.$confirm({
-                    title: '删除入站',
-                    content: '确定要删除入站吗?',
-                    okText: '删除',
-                    cancelText: '取消',
+                    title: 'Delete inbound',
+                    content: 'Are you sure you want to delete the inbound?',
+                    okText: 'Sure',
+                    cancelText: 'Cancel',
                     onOk: () => this.submit('/xui/inbound/del/' + dbInbound.id),
                 });
             },
             showQrcode(dbInbound) {
                 const link = dbInbound.genLink();
-                qrModal.show('二维码', link);
+                qrModal.show('QR code', link);
             },
             showInfo(dbInbound) {
                 infoModal.show(dbInbound);
